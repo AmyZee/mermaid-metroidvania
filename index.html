@@ -43,10 +43,10 @@ function start(){
 			document.getElementById("game").style.display = "block"
 			window.addEventListener("deviceorientation", function(e){
 				if(player.positionX < 1000 && player.positionX > 0){
-					player.positionX = player.positionX + e.gamma/1000
+					player.positionX = player.positionX + e.gamma/100
 				}
 				if(player.positionY < 1600 && player.positionY > 0){
-					player.positionY = player.positionY + e.beta/1000
+					player.positionY = player.positionY + e.beta/100
 				}
 			})
 		}
