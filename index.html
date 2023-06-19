@@ -2,9 +2,67 @@
 <html>
 <head>
 <title>Mermaid Metroidvania</title>
+<meta charset="utf-8">
+<style>
+	body{
+		margin: 0;
+	}
+	#game{
+		width: 100%;
+		height: 160vw;
+		border: 1px solid black;
+    display: none;
+	}
+	#info{
+		width: 100%;
+	}
+</style>
 </head>
-<body>
+<body onload="">
+<button id="activate-acceleration" onclick="start()">Activate Acceleration</button>
+<canvas width="1000" height="1600" id="game"></canvas>
+<div id="info"></div>
+
 <script>
+
+var player = {}
+	player.positionX = 450
+	player.positionY = 450
+
+	
+var playersprite = new Image()
+	playersprite.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Godot_icon.svg/480px-Godot_icon.svg.png"
+
+var context = document.getElementById("game").getContext("2d")
+
+	
+function start(){
+
+	DeviceMotionEvent.requestPermission().then(function(response){
+		if (response == "granted"){
+			window.addEventListener("deviceorientation", function(e){
+				player.positionX = player.positionX + e.gamma
+				player.positionY = player.positionY + e.beta
+			})
+		}
+	})
+	
+  document.getElementById("game").getContext("2d").drawImage(playersprite, player.positionX - 50, player.positionY - 50, 100, 100)
+
+	gameLoop()
+
+}
+
+function gameloop(){
+
+	document.getElementById("game").getContext("2d").clearRect(0, 0, 1000, 1600)
+	document.getElementById("game").getContext("2d").drawImage(playersprite, player.positionX - 50, player.positionY - 50, 100, 100)
+
+	document.getElementById("info").innerHTML = `positionX = ${player.positionX} | positionY = ${player.positionY}`
+
+	window.requestAnimationFrame(gameLoop)
+	
+}
 
 </script>
 </body>
