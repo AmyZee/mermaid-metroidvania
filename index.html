@@ -40,7 +40,6 @@ function start(){
 
 	DeviceMotionEvent.requestPermission().then(function(response){
 		if (response == "granted"){
-			alert("Accelerometer access granted!")
 			window.addEventListener("deviceorientation", function(e){
 				if(player.positionX < 1000 && player.positionX > 0){
 					player.positionX = player.positionX + e.gamma/1000
@@ -60,7 +59,7 @@ function start(){
 
 function gameLoop(){
 
-	document.getElementById("game").getContext("2d").clearRect(0, 0, 1000, 1600)
+	//document.getElementById("game").getContext("2d").clearRect(0, 0, 1000, 1600)
 	document.getElementById("game").getContext("2d").drawImage(playersprite, player.positionX - 50, player.positionY - 50, 100, 100)
 
 	document.getElementById("info").innerHTML = `positionX = ${player.positionX} | positionY = ${player.positionY}`
