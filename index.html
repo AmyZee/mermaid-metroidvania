@@ -11,7 +11,7 @@
 		width: 100%;
 		height: 160vw;
 		border: 1px solid black;
-    display: none;
+    		display: none;
 	}
 	#info{
 		width: 100%;
@@ -40,6 +40,7 @@ function start(){
 
 	DeviceMotionEvent.requestPermission().then(function(response){
 		if (response == "granted"){
+			document.getElementById("game").style.display = "block"
 			window.addEventListener("deviceorientation", function(e){
 				if(player.positionX < 1000 && player.positionX > 0){
 					player.positionX = player.positionX + e.gamma/1000
