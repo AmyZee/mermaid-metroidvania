@@ -18,10 +18,10 @@
 	}
 </style>
 </head>
-<body onload="">
+<body>
 <button id="activate-acceleration" onclick="start()">Activate Acceleration</button>
-<canvas width="1000" height="1600" id="game"></canvas>
 <div id="info"></div>
+<canvas width="1000" height="1600" id="game"></canvas>
 
 <script>
 
@@ -40,14 +40,17 @@ function start(){
 
 	DeviceMotionEvent.requestPermission().then(function(response){
 		if (response == "granted"){
+			alert("Accelerometer access granted!")
 			window.addEventListener("deviceorientation", function(e){
 				player.positionX = player.positionX + e.gamma
 				player.positionY = player.positionY + e.beta
+
+				document.getElementById("info").innerHTML = `player.positionX = ${player.positionX}; positionY = ${player.positionY}`
 			})
 		}
 	})
 	
-  document.getElementById("game").getContext("2d").drawImage(playersprite, player.positionX - 50, player.positionY - 50, 100, 100)
+	document.getElementById("game").getContext("2d").drawImage(playersprite, player.positionX - 50, player.positionY - 50, 100, 100)
 
 	gameLoop()
 
