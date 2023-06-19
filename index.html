@@ -43,13 +43,11 @@ function start(){
 			alert("Accelerometer access granted!")
 			window.addEventListener("deviceorientation", function(e){
 				if(player.positionX < 1000 && player.positionX > 0){
-					player.positionX = player.positionX + e.gamma
+					player.positionX = player.positionX + e.gamma/1000
 				}
 				if(player.positionY < 1600 && player.positionY > 0){
-					player.positionY = player.positionY + e.beta
+					player.positionY = player.positionY + e.beta/1000
 				}
-
-				document.getElementById("info").innerHTML = `player.positionX = ${player.positionX}; positionY = ${player.positionY}`
 			})
 		}
 	})
