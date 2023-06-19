@@ -42,8 +42,12 @@ function start(){
 		if (response == "granted"){
 			alert("Accelerometer access granted!")
 			window.addEventListener("deviceorientation", function(e){
-				player.positionX = player.positionX + e.gamma
-				player.positionY = player.positionY + e.beta
+				if(player.positionX < 1000 && player.positionX > 0){
+					player.positionX = player.positionX + e.gamma
+				}
+				if(player.positionY < 1600 && player.positionY > 0){
+					player.positionY = player.positionY + e.beta
+				}
 
 				document.getElementById("info").innerHTML = `player.positionX = ${player.positionX}; positionY = ${player.positionY}`
 			})
