@@ -53,14 +53,17 @@ function start(){
 	})
 	
 	document.getElementById("game").getContext("2d").drawImage(playersprite, player.positionX - 50, player.positionY - 50, 100, 100)
-
+	
 	gameLoop()
 
 }
 
 function gameLoop(){
 
-	//document.getElementById("game").getContext("2d").clearRect(0, 0, 1000, 1600)
+	document.getElementById("game").getContext("2d").clearRect(0, 0, 1000, 1600)
+	document.getElementById("game").getContext("2d").beginPath()
+	document.getElementById("game").getContext("2d").arc(500, 375, 250, 0, 2 * Math.PI)
+	document.getElementById("game").getContext("2d").stroke()
 	document.getElementById("game").getContext("2d").drawImage(playersprite, player.positionX - 50, player.positionY - 50, 100, 100)
 
 	document.getElementById("info").innerHTML = `positionX = ${player.positionX} | positionY = ${player.positionY}`
