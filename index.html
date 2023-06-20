@@ -33,7 +33,7 @@ var player = {}
 	player.movement.newPositionY = 0
 	player.movement.maxSpeed = 0.1
 	player.movement.maxTiltX = 0
-	player.movement.ZoneRadius = 250
+	player.movement.zoneRadius = 250
 	
 var playersprite = new Image()
 	playersprite.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Godot_icon.svg/480px-Godot_icon.svg.png"
@@ -47,12 +47,8 @@ function start(){
 		if (response == "granted"){
 			document.getElementById("game").style.display = "block"
 			window.addEventListener("deviceorientation", function(e){
-				if(player.positionX < 1000 && player.positionX > 0){
-					player.newPositionX = player.positionX + e.gamma * player.movement.maxSpeed
-				}
-				if(player.positionY < 1600 && player.positionY > 0){
-					player.newPositionY = player.positionY + e.beta * player.movement.maxSpeed
-				}
+				player.movement.newPositionX = player.movement.positionX + e.gamma * player.movement.maxSpeed
+				player.movement.newPositionY = player.movement.positionY + e.beta * player.movement.maxSpeed
 			})
 		}
 	})
@@ -74,12 +70,11 @@ function gameLoop(){
 }
 
 
-var MovementZoneRadius = 250
 function drawMovementZone(){
 	
 	document.getElementById("game").getContext("2d").clearRect(0, 0, 1000, 1600)
 	document.getElementById("game").getContext("2d").beginPath()
-	document.getElementById("game").getContext("2d").arc(450, 450, MovementZoneRadius, 0, 2 * Math.PI)
+	document.getElementById("game").getContext("2d").arc(450, 450, player.movement.zoneRadius, 0, 2 * Math.PI)
 	document.getElementById("game").getContext("2d").stroke()
 	document.getElementById("game").getContext("2d").drawImage(playersprite, player.movement.positionX - 50, player.movement.positionY - 50, 100, 100)
 }
