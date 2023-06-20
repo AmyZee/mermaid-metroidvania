@@ -81,7 +81,7 @@ function drawMovementZone(){
 	document.getElementById("game").getContext("2d").beginPath()
 	document.getElementById("game").getContext("2d").arc(450, 450, MovementZoneRadius, 0, 2 * Math.PI)
 	document.getElementById("game").getContext("2d").stroke()
-	document.getElementById("game").getContext("2d").drawImage(playersprite, player.positionX - 50, player.positionY - 50, 100, 100)
+	document.getElementById("game").getContext("2d").drawImage(playersprite, player.movement.positionX - 50, player.movement.positionY - 50, 100, 100)
 }
 	
 function playerMovement(){
