@@ -28,7 +28,11 @@
 var player = {}
 	player.positionX = 450
 	player.positionY = 450
-
+	player.newPositionX = 0
+	player.newPositionY = 0
+	player.movement.maxSpeed = 0.1
+	player.movement.maxTiltX = 0
+	player.movement.ZoneRadius = 250
 	
 var playersprite = new Image()
 	playersprite.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Godot_icon.svg/480px-Godot_icon.svg.png"
@@ -43,10 +47,10 @@ function start(){
 			document.getElementById("game").style.display = "block"
 			window.addEventListener("deviceorientation", function(e){
 				if(player.positionX < 1000 && player.positionX > 0){
-					player.positionX = player.positionX + e.gamma/10
+					player.newPositionX = player.positionX + e.gamma * player.movement.maxSpeed
 				}
 				if(player.positionY < 1600 && player.positionY > 0){
-					player.positionY = player.positionY + e.beta/10
+					player.newPositionY = player.positionY + e.beta * player.movement.maxSpeed
 				}
 			})
 		}
@@ -60,15 +64,45 @@ function start(){
 
 function gameLoop(){
 
-	document.getElementById("game").getContext("2d").clearRect(0, 0, 1000, 1600)
-	document.getElementById("game").getContext("2d").beginPath()
-	document.getElementById("game").getContext("2d").arc(450, 450, 250, 0, 2 * Math.PI)
-	document.getElementById("game").getContext("2d").stroke()
-	document.getElementById("game").getContext("2d").drawImage(playersprite, player.positionX - 50, player.positionY - 50, 100, 100)
+	drawMovementZone()
 
-	document.getElementById("info").innerHTML = `positionX = ${player.positionX} | positionY = ${player.positionY}`
+	playerMovement()
 
 	window.requestAnimationFrame(gameLoop)
+	
+}
+
+
+var MovementZoneRadius = 250
+function drawMovementZone(){
+	
+	document.getElementById("game").getContext("2d").clearRect(0, 0, 1000, 1600)
+	document.getElementById("game").getContext("2d").beginPath()
+	document.getElementById("game").getContext("2d").arc(450, 450, MovementZoneRadius, 0, 2 * Math.PI)
+	document.getElementById("game").getContext("2d").stroke()
+	document.getElementById("game").getContext("2d").drawImage(playersprite, player.positionX - 50, player.positionY - 50, 100, 100)
+}
+	
+function playerMovement(){
+
+	limitMovement()
+
+	player.movement.positionX = player.movement.newPositionX
+	player.movement.positionY = player.movement.newPositionY
+	
+	document.getElementById("info").innerHTML = `positionX = ${player.positionX} | positionY = ${player.positionY}`
+}
+	
+function limitMovement(){
+
+	if((player.movement.ZoneRadius =< Math.sqrt((player.movement.newPositionX * player.movement.newPositionX) + (player.movement.positionY * player.movement.positionY)){
+		return
+	} else {
+		var percentage = player.movement.ZoneRadius / Math.sqrt((player.movement.newPositionX * player.movement.newPositionX) + (player.movement.positionY * player.movement.positionY)
+		player.movement.newPositionX = player.newPositionX * percentage
+		player.movement.newPositionY = player.newPositionY * percentage
+		
+	}
 	
 }
 
