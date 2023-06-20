@@ -91,7 +91,7 @@ function playerMovement(){
 	
 function limitMovement(){
 
-	if((player.movement.zoneRadius + 450) <= Math.sqrt((player.movement.newPositionX * player.movement.newPositionX) + (player.movement.positionY * player.movement.positionY))){
+	if((player.movement.zoneRadius - 50) <= Math.sqrt((player.movement.newPositionX * player.movement.newPositionX) + (player.movement.positionY * player.movement.positionY))){
 		return
 	} else {
 		var percentage = player.movement.zoneRadius / Math.sqrt((player.movement.newPositionX * player.movement.newPositionX) + (player.movement.positionY * player.movement.positionY))
