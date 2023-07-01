@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-<button id="activate-acceleration" onclick="start()">Activate Acceleration</button>
+<button id="activate-acceleration" onclick="start()" style="height:44px;">Activate Acceleration</button>
 <div id="info"></div>
 <canvas width="1000" height="1600" id="game"></canvas>
 
@@ -31,6 +31,8 @@ var player = {}
 	player.movement.positionY = 450
 	player.movement.newPositionX = 450
 	player.movement.newPositionY = 450
+	player.movement.startingPhoneRotationX = 0
+	player.movement.startingPhoneRotationY = 0
 	player.movement.maxSpeed = 0.1
 	player.movement.maxTiltX = 0
 	player.movement.zoneRadius = 250
