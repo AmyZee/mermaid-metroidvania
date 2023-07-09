@@ -41,7 +41,7 @@ var block = {}
 	block.empty = {}
 	block.empty.img = "img/block-empty.png"
 	block.solid = {}
-	block.solid.img = ☐
+	block.solid.img = "☐"
 	block.solid.physics = function(){
 		if (player.movement.newPositionX < player.movement.positionX){
 			//...
@@ -160,6 +160,15 @@ function playerMovement(){
 	
 function limitMovement(){
 
+	function limitToHexadecagon(){
+		//if(player.newPositionX > )
+	}
+	limitToHexadecagon()
+
+	function limitToLevelObjects(){
+
+	}
+	limitToLevelObjects()
 	
 	
 	//if((player.movement.zoneRadius + 450) <= Math.sqrt((player.movement.newPositionX * player.movement.newPositionX) + (player.movement.positionY * player.movement.positionY))){
