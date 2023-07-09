@@ -185,9 +185,8 @@ function drawMovementZone(){
 	}
 
 	document.getElementById("game").getContext("2d").strokeStyle = "#222"
-	for (i = 100; i < 1000; i+=100){
-		
-		for (j = 100; j < 1600; j+=100){
+	for (i = 50; i < 1000; i+=100){
+		for (j = 50; j < 1600; j+=100){
 			document.getElementById("game").getContext("2d").beginPath()
 			document.getElementById("game").getContext("2d").moveTo(i, 0)
 			document.getElementById("game").getContext("2d").lineTo(i, 1600)
