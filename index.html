@@ -12,6 +12,7 @@
 		height: 160vw;
 		border: 1px solid black;
     		display: none;
+		box-sizing: border-box;
 	}
 	#info{
 		width: 100%;
@@ -167,10 +168,20 @@ function drawMovementZone(){
 
 	//Display Grid 100 by 100 units
 
-	document.getElementById("game").getContext("2d").beginPath()
-	document.getElementById("game").getContext("2d").moveTo(100, 0)
-	document.getElementById("game").getContext("2d").lineTo(100, 1600)
-	document.getElementById("game").getContext("2d").stroke()
+	for (i = 100; i < 1000; i+=100){
+		for (j = 100; j < 1600; j+=100){
+			document.getElementById("game").getContext("2d").beginPath()
+			document.getElementById("game").getContext("2d").moveTo(i, 0)
+			document.getElementById("game").getContext("2d").lineTo(i, 1600)
+			document.getElementById("game").getContext("2d").stroke()
+
+			document.getElementById("game").getContext("2d").beginPath()
+			document.getElementById("game").getContext("2d").moveTo(0, j)
+			document.getElementById("game").getContext("2d").lineTo(1000, j)
+			document.getElementById("game").getContext("2d").stroke()
+		}
+		
+	}
 	
 	
 }
