@@ -164,6 +164,14 @@ function drawMovementZone(){
 	document.getElementById("game").getContext("2d").arc(450, 450, player.movement.zoneRadius, 0, 2 * Math.PI)
 	document.getElementById("game").getContext("2d").stroke()
 	document.getElementById("game").getContext("2d").drawImage(playersprite, player.movement.positionX - 50, player.movement.positionY - 50, 100, 100)
+
+	//Display Grid 100 by 100 units
+
+	document.getElementById("game").getContext("2d").beginPath()
+	document.getElementById("game").getContext("2d").moveTo(100, 0)
+	document.getElementById("game").getContext("2d").lineTo(1000, 0)
+	
+	
 }
 	
 function playerMovement(){
