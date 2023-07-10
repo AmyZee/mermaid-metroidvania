@@ -161,6 +161,7 @@ function gameLoop(){
 
 function drawMovementZone(){
 	
+	document.getElementById("game").getContext("2d").clearRect(0, 0, 1000, 1600)
 
 
 	//Display Grid 100 by 100 units, 50 by 50 sub-units, 25 by 25 sub-sub units
@@ -216,7 +217,6 @@ function drawMovementZone(){
 	}
 
 	//Draw player
-	document.getElementById("game").getContext("2d").clearRect(0, 0, 1000, 1600)
 	document.getElementById("game").getContext("2d").beginPath()
 	document.getElementById("game").getContext("2d").arc(500, 500, player.movement.zoneRadius, 0, 2 * Math.PI)
 	document.getElementById("game").getContext("2d").stroke()
