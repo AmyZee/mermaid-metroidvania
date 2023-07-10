@@ -241,14 +241,28 @@ function playerMovement(){
 function limitMovement(){
 
 	function limitToHexadecagon(){
-		//if(player.newPositionX > )
+		if(player.movement.newPositionX < 400){
+			player.movement.newPositionX = 400
+		}
+			if (player.movement.newPositionX < 425 && player.movement.newPositionY < 425){
+				player.movement.newPositionX = 425
+				player.movement.newPositionY = 425
+			}
+		if(player.movement.newPositionX > 600){
+			player.movement.newPositionX = 600
+		}
+		if(player.movement.newPositionY < 400){
+			player.movement.newPositionY = 400
+		}
+		if(player.movement.newPositionY > 600){
+			player.movement.newPositionY = 600
+		}
 	}
 	limitToHexadecagon()
 
 	function limitToLevelObjects(){
-		if(player.movement.newPositionY > 600){
-			player.movement.newPositionY = 600
-		}
+		
+
 	}
 	limitToLevelObjects()
 	
