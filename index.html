@@ -28,10 +28,10 @@
 
 var player = {}
 	player.movement = {}
-	player.movement.positionX = 450
-	player.movement.positionY = 450
-	player.movement.newPositionX = 450
-	player.movement.newPositionY = 450
+	player.movement.positionX = 500
+	player.movement.positionY = 500
+	player.movement.newPositionX = 500
+	player.movement.newPositionY = 500
 	player.movement.startingPhoneRotationX = 0
 	player.movement.startingPhoneRotationY = 0
 	player.movement.maxSpeed = 0.1
@@ -161,13 +161,43 @@ function gameLoop(){
 
 function drawMovementZone(){
 	
-	document.getElementById("game").getContext("2d").clearRect(0, 0, 1000, 1600)
-	document.getElementById("game").getContext("2d").beginPath()
-	document.getElementById("game").getContext("2d").arc(450, 450, player.movement.zoneRadius, 0, 2 * Math.PI)
-	document.getElementById("game").getContext("2d").stroke()
-	document.getElementById("game").getContext("2d").drawImage(playersprite, player.movement.positionX - 50, player.movement.positionY - 50, 100, 100)
 
-	//Display Grid 100 by 100 units, 50 by 50 sub-units
+
+	//Display Grid 100 by 100 units, 50 by 50 sub-units, 25 by 25 sub-sub units
+
+	document.getElementById("game").getContext("2d").strokeStyle = "#aaa"
+	for (i = 25; i < 1000; i+=50){
+		for (j = 25; j < 1600; j+=50){
+			document.getElementById("game").getContext("2d").beginPath()
+			document.getElementById("game").getContext("2d").moveTo(i, 0)
+			document.getElementById("game").getContext("2d").lineTo(i, 1600)
+			document.getElementById("game").getContext("2d").stroke()
+
+			document.getElementById("game").getContext("2d").beginPath()
+			document.getElementById("game").getContext("2d").moveTo(0, j)
+			document.getElementById("game").getContext("2d").lineTo(1000, j)
+			document.getElementById("game").getContext("2d").stroke()
+		}
+		
+	}
+	
+
+
+	document.getElementById("game").getContext("2d").strokeStyle = "#555"
+	for (i = 50; i < 1000; i+=100){
+		for (j = 50; j < 1600; j+=100){
+			document.getElementById("game").getContext("2d").beginPath()
+			document.getElementById("game").getContext("2d").moveTo(i, 0)
+			document.getElementById("game").getContext("2d").lineTo(i, 1600)
+			document.getElementById("game").getContext("2d").stroke()
+
+			document.getElementById("game").getContext("2d").beginPath()
+			document.getElementById("game").getContext("2d").moveTo(0, j)
+			document.getElementById("game").getContext("2d").lineTo(1000, j)
+			document.getElementById("game").getContext("2d").stroke()
+		}
+		
+	}
 
 	document.getElementById("game").getContext("2d").strokeStyle = "#000"
 	for (i = 100; i < 1000; i+=100){
@@ -185,21 +215,12 @@ function drawMovementZone(){
 		
 	}
 
-	document.getElementById("game").getContext("2d").strokeStyle = "#222"
-	for (i = 50; i < 1000; i+=100){
-		for (j = 50; j < 1600; j+=100){
-			document.getElementById("game").getContext("2d").beginPath()
-			document.getElementById("game").getContext("2d").moveTo(i, 0)
-			document.getElementById("game").getContext("2d").lineTo(i, 1600)
-			document.getElementById("game").getContext("2d").stroke()
-
-			document.getElementById("game").getContext("2d").beginPath()
-			document.getElementById("game").getContext("2d").moveTo(0, j)
-			document.getElementById("game").getContext("2d").lineTo(1000, j)
-			document.getElementById("game").getContext("2d").stroke()
-		}
-		
-	}
+	//Draw player
+	document.getElementById("game").getContext("2d").clearRect(0, 0, 1000, 1600)
+	document.getElementById("game").getContext("2d").beginPath()
+	document.getElementById("game").getContext("2d").arc(500, 500, player.movement.zoneRadius, 0, 2 * Math.PI)
+	document.getElementById("game").getContext("2d").stroke()
+	document.getElementById("game").getContext("2d").drawImage(playersprite, player.movement.positionX - 50, player.movement.positionY - 50, 100, 100)
 	
 	
 }
