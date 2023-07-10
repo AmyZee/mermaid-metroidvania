@@ -242,20 +242,20 @@ function limitMovement(){
 
 	function limitToHexadecagon(){
 		if(player.movement.newPositionX < 400){
-			player.movement.newPositionX = 400
+			player.movement.newPositionX = player.movement.positionX
 		}
 			if (player.movement.newPositionX < 425 && player.movement.newPositionY < 425){
-				player.movement.newPositionX = 425
-				player.movement.newPositionY = 425
+				player.movement.newPositionX = player.movement.positionX
+				player.movement.newPositionY = player.movement.positionY
 			}
 		if(player.movement.newPositionX > 600){
-			player.movement.newPositionX = 600
+			player.movement.newPositionX = player.movement.positionX
 		}
 		if(player.movement.newPositionY < 400){
-			player.movement.newPositionY = 400
+			player.movement.newPositionY = player.movement.positionY
 		}
 		if(player.movement.newPositionY > 600){
-			player.movement.newPositionY = 600
+			player.movement.newPositionY = player.movement.positionY
 		}
 	}
 	limitToHexadecagon()
