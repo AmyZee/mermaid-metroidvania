@@ -255,10 +255,8 @@ function limitMovement(){
 		}
 
 			if (player.movement.newPositionX < 425 && player.movement.newPositionY < 425){
-				let temp
-				temp = player.movement.newPositionX
-				player.movement.newPositionX = player.movement.positionY
-				player.movement.newPositionY = temp
+				player.movement.newPositionX = player.movement.positionX + player.movement.positionY
+				player.movement.newPositionY = player.movement.positionY + player.movement.positionX
 			}
 			if (player.movement.newPositionX > 575 && player.movement.newPositionY < 425){
 				player.movement.newPositionX = player.movement.positionX
