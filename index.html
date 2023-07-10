@@ -246,8 +246,8 @@ function limitMovement(){
 	limitToHexadecagon()
 
 	function limitToLevelObjects(){
-		if(player.newPositionY > 600){
-			player.newPositionY = 600
+		if(player.movement.newPositionY > 600){
+			player.movement.newPositionY = 600
 		}
 	}
 	limitToLevelObjects()
