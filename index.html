@@ -281,7 +281,7 @@ function limitMovement(){
 			//Use that position instead for movement calculation (i.e. teleport to that position every frame)
 			//That way, positioning outside circle is still calculated correctly when changing radius
 
-		var isPlayerOutsideCircle = (500 - (player.movement.newPositionX ** 2)) + (500 - (player.movement.newPositionY ** 2))
+		var isPlayerOutsideCircle = ((2500 - player.movement.newPositionX) ** 2) + ((2500 - player.movement.newPositionY) ** 2)
 		if (isPlayerOutsideCircle > 600){
 			//Player is outside circle
 			//player.movement.newPositionX = player.movement.positionX
