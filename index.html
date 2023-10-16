@@ -271,8 +271,27 @@ function limitMovement(){
 				player.movement.newPositionY = player.movement.positionY
 			}
 	}
-	limitToHexadecagon()
+	//limitToHexadecagon()
 
+	function limitToTriangularCircle(){
+		//Radius c^2 = x^2 + y^2 (Pythagoras theorem)
+		//If (c^2 > (x^2 + y^2)) { current position is outside circle } //if c^2 <, current position is inside circle
+			//Then draw line to center (0,0), calculating c^2 diagonal line by doing x^2 + y^2
+			//Compare to same point on circle, where c^2 == x^2 + y^2
+			//Use that position instead for movement calculation (i.e. teleport to that position every frame)
+			//That way, positioning outside circle is still calculated correctly when changing radius
+
+		var isPlayerOutsideCircle = (player.movement.newPositionX ** 2) + (player.movement.newPositionY ** 2)
+		if (isPlayerOutsideCircle > 600){
+			//Player is outside circle
+			player.movement.newPositionX = player.movement.positionX
+			player.movement.newPositionY = player.movement.positionY
+			//(player.movement.newPositionX ** 2) + (player.movement.newPositionY ** 2)
+		}
+	}
+
+	limitToTriangularCircle()
+	
 	function limitToLevelObjects(){
 		
 
