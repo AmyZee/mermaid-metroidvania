@@ -288,8 +288,8 @@ function limitMovement(){
 			player.movement.newPositionY = player.movement.positionY			
 			document.getElementById("info").style.color = "red"
 			//(player.movement.newPositionX ** 2) + (player.movement.newPositionY ** 2)
-		} else if (isPlayerOutsideCircle > 6400) { //radius 80 * 80, slow down outside!
-			player.movement.maxSpeed = 0.05
+		} else if (isPlayerOutsideCircle > 6400 && (((player.movement.positionX - 500) ** 2) + ((player.movement.positionY - 500) ** 2)) < isPlayerOutsideCircle) { //radius 80 * 80, slow down outside!
+			player.movement.maxSpeed = 0.02
 			document.getElementById("info").style.color = "yellow"
 		} else {
 			player.movement.maxSpeed = 0.1
