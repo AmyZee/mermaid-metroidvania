@@ -121,8 +121,8 @@ function start(){
 			document.getElementById("game").style.display = "block"
 			document.getElementById("activate-acceleration").innerHTML = "Reset accelerometer"
 			window.addEventListener("deviceorientation", function(e){
-				player.movement.newPositionX = player.movement.positionX + e.gamma * player.movement.maxSpeed - player.movement.startingPhoneRotationX
-				player.movement.newPositionY = player.movement.positionY + e.beta * player.movement.maxSpeed - player.movement.startingPhoneRotationY
+				player.movement.newPositionX = player.movement.positionX + (e.gamma - player.movement.startingPhoneRotationX) * player.movement.maxSpeed 
+				player.movement.newPositionY = player.movement.positionY + (e.beta - player.movement.startingPhoneRotationY) * player.movement.maxSpeed
 				if (setDeviceStartingOrientation == 1){
 					return
 				} else {
