@@ -221,46 +221,13 @@ function playerMovement(){
 
 	limitMovement()
 
-	player.movement.positionX = player.movement.newPositionX
-	player.movement.positionY = player.movement.newPositionY
+	player.movement.positionX = player.movement.newPositionX - player.movement.statingPhoneRotationX
+	player.movement.positionY = player.movement.newPositionY - player.movement.statingPhoneRotationY
 	
 	document.getElementById("info").innerHTML = `positionX = ${player.movement.positionX} | positionY = ${player.movement.positionY}`
 }
 	
 function limitMovement(){
-
-	function limitToHexadecagon(){
-		if(player.movement.newPositionX < 400){
-			player.movement.newPositionX = player.movement.positionX
-		}
-		if(player.movement.newPositionX > 600){
-			player.movement.newPositionX = player.movement.positionX
-		}
-		if(player.movement.newPositionY < 400){
-			player.movement.newPositionY = player.movement.positionY
-		}
-		if(player.movement.newPositionY > 600){
-			player.movement.newPositionY = player.movement.positionY
-		}
-
-			if (player.movement.newPositionX < 425 && player.movement.newPositionY < 425){
-				player.movement.newPositionX = player.movement.positionX + player.movement.positionY
-				player.movement.newPositionY = player.movement.positionY + player.movement.positionX
-			}
-			if (player.movement.newPositionX > 575 && player.movement.newPositionY < 425){
-				player.movement.newPositionX = player.movement.positionX
-				player.movement.newPositionY = player.movement.positionY
-			}
-			if (player.movement.newPositionX < 425 && player.movement.newPositionY > 575){
-				player.movement.newPositionX = player.movement.positionX
-				player.movement.newPositionY = player.movement.positionY
-			}
-			if (player.movement.newPositionX > 575 && player.movement.newPositionY > 575){
-				player.movement.newPositionX = player.movement.positionX
-				player.movement.newPositionY = player.movement.positionY
-			}
-	}
-	//limitToHexadecagon()
 
 	function limitToTriangularCircle(){
 		//Radius c^2 = x^2 + y^2 (Pythagoras theorem)
@@ -295,15 +262,7 @@ function limitMovement(){
 	limitToLevelObjects()
 	
 	
-	//if((player.movement.zoneRadius + 450) <= Math.sqrt((player.movement.newPositionX * player.movement.newPositionX) + (player.movement.positionY * player.movement.positionY))){
-	//	return
-	//} else {
-	//	var percentage = player.movement.zoneRadius / Math.sqrt((player.movement.newPositionX * player.movement.newPositionX) + (player.movement.positionY * player.movement.positionY))
-	//	player.movement.newPositionX = player.newPositionX * percentage
-	//	player.movement.newPositionY = player.newPositionY * percentage
-	//	
-	//}
-	//test1234
+
 }
 
 
