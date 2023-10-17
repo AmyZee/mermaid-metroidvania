@@ -20,12 +20,12 @@
 </style>
 </head>
 <body>
-<button id="activate-acceleration" onclick="start()" style="height:176px; font-size: 150px;">Activate Acceleration</button>
+<button id="activate-acceleration" onclick="start()" style="height:176px; font-size: 80px;">Activate Acceleration</button>
 <div id="info"></div>
 <canvas width="1000" height="1600" id="game"></canvas>
 
 <script>
-
+var setDeviceStartingOrientation = 0
 var player = {}
 	player.movement = {}
 	player.movement.positionX = 500
@@ -114,12 +114,22 @@ var context = document.getElementById("game").getContext("2d")
 	
 function start(){
 
+	setDeviceStartingOrientation = 0
+	
 	DeviceMotionEvent.requestPermission().then(function(response){
 		if (response == "granted"){
 			document.getElementById("game").style.display = "block"
+			document.getElementById("activate-acceleration").innerHTML = "Reset accelerometer"
 			window.addEventListener("deviceorientation", function(e){
 				player.movement.newPositionX = player.movement.positionX + e.gamma * player.movement.maxSpeed
 				player.movement.newPositionY = player.movement.positionY + e.beta * player.movement.maxSpeed
+				if (setDeviceStartingOrientation == 1){
+					return
+				} else {
+					player.movement.statingPhoneRotationX = 0 - e.gamma
+					player.movement.statingPhoneRotationY = 0 - e.beta
+					setDeviceStartingOrientation = 1
+				}
 			})
 		}
 	})
@@ -268,7 +278,7 @@ function limitMovement(){
 			document.getElementById("info").style.color = "red"
 			//(player.movement.newPositionX ** 2) + (player.movement.newPositionY ** 2)
 		} else if (isPlayerOutsideCircle > (player.movement.innerZoneRadius ** 2) && (((player.movement.positionX - 500) ** 2) + ((player.movement.positionY - 500) ** 2)) < isPlayerOutsideCircle) { //radius 80 * 80, slow down outside!
-			player.movement.maxSpeed = 0.02
+			player.movement.maxSpeed = 0.1
 			document.getElementById("info").style.color = "yellow"
 		} else {
 			player.movement.maxSpeed = 0.1
