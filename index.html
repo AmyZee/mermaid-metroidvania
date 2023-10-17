@@ -221,8 +221,8 @@ function playerMovement(){
 
 	limitMovement()
 
-	player.movement.positionX = player.movement.newPositionX - player.movement.startingPhoneRotationX
-	player.movement.positionY = player.movement.newPositionY - player.movement.startingPhoneRotationY
+	player.movement.positionX = player.movement.newPositionX + player.movement.startingPhoneRotationX
+	player.movement.positionY = player.movement.newPositionY + player.movement.startingPhoneRotationY
 	
 	document.getElementById("info").innerHTML = `positionX = ${player.movement.positionX} | positionY = ${player.movement.positionY}`
 }
