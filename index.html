@@ -126,8 +126,8 @@ function start(){
 				if (setDeviceStartingOrientation == 1){
 					return
 				} else {
-					player.movement.statingPhoneRotationX = e.gamma
-					player.movement.statingPhoneRotationY = e.beta
+					player.movement.startingPhoneRotationX = e.gamma
+					player.movement.startingPhoneRotationY = e.beta
 					setDeviceStartingOrientation = 1
 				}
 			})
@@ -221,8 +221,8 @@ function playerMovement(){
 
 	limitMovement()
 
-	player.movement.positionX = player.movement.newPositionX - player.movement.statingPhoneRotationX
-	player.movement.positionY = player.movement.newPositionY - player.movement.statingPhoneRotationY
+	player.movement.positionX = player.movement.newPositionX - player.movement.startingPhoneRotationX
+	player.movement.positionY = player.movement.newPositionY - player.movement.startingPhoneRotationY
 	
 	document.getElementById("info").innerHTML = `positionX = ${player.movement.positionX} | positionY = ${player.movement.positionY}`
 }
