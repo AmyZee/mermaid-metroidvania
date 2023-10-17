@@ -20,7 +20,7 @@
 </style>
 </head>
 <body>
-<button id="activate-acceleration" onclick="start()" style="height:44px;">Activate Acceleration</button>
+<button id="activate-acceleration" onclick="start()" style="height:176px; font-size: 150px;">Activate Acceleration</button>
 <div id="info"></div>
 <canvas width="1000" height="1600" id="game"></canvas>
 
@@ -36,29 +36,8 @@ var player = {}
 	player.movement.startingPhoneRotationY = 0
 	player.movement.maxSpeed = 0.1
 	player.movement.maxTiltX = 0
-	player.movement.zoneRadius = 100
-	player.movement.limit = [
-		//Each item in the array represents 0.25 blocks; i.e. 12.5 canvas units
-		[" ", " ", " ", " ",   " ", "☐", "☐", "☐",   "☐", "☐", "☐", " ",   " ", " ", " ", " ",],
-		[" ", " ", " ", "☐",   "☐", " ", " ", " ",   " ", " ", " ", "☐",   "☐", " ", " ", " ",],
-		[" ", " ", "☐", " ",   " ", " ", " ", " ",   " ", " ", " ", " ",   " ", "☐", " ", " ",],
-		[" ", "☐", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", "☐", " ",],
-		
-		[" ", "☐", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", "☐", " ",],
-		["☐", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", "☐",],
-		["☐", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", "☐",],
-		["☐", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", "☐",],
-		
-		["☐", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", "☐",],
-		["☐", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", "☐",],
-		["☐", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", "☐",],
-		[" ", "☐", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", "☐", " ",],
-		
-		[" ", "☐", " ", " ",   " ", " ", " ", " ",   " ", " ", " ", " ",   " ", " ", "☐", " ",],
-		[" ", " ", "☐", " ",   " ", " ", " ", " ",   " ", " ", " ", " ",   " ", "☐", " ", " ",],
-		[" ", " ", " ", "☐",   "☐", " ", " ", " ",   " ", " ", " ", "☐",   "☐", " ", " ", " ",],
-		[" ", " ", " ", " ",   " ", "☐", "☐", "☐",   "☐", "☐", "☐", " ",   " ", " ", " ", " ",],	
-	]
+	player.movement.innerZoneRadius = 80 //Slow down at this point
+	player.movement.outerZoneRadius = 100 //Full stop at this point
 
 var block = {}
 	block.empty = {}
@@ -221,7 +200,7 @@ function drawMovementZone(){
 
 	//Draw player
 	document.getElementById("game").getContext("2d").beginPath()
-	document.getElementById("game").getContext("2d").arc(500, 500, player.movement.zoneRadius, 0, 2 * Math.PI)
+	document.getElementById("game").getContext("2d").arc(500, 500, player.movement.outerZoneRadius, 0, 2 * Math.PI)
 	document.getElementById("game").getContext("2d").stroke()
 	document.getElementById("game").getContext("2d").drawImage(playersprite, player.movement.positionX - 50, player.movement.positionY - 50, 100, 100)
 	
@@ -282,13 +261,13 @@ function limitMovement(){
 			//That way, positioning outside circle is still calculated correctly when changing radius
 
 		var isPlayerOutsideCircle = ((player.movement.newPositionX - 500) ** 2) + ((player.movement.newPositionY - 500) ** 2)
-		if (isPlayerOutsideCircle > 10000){ //radius 100 * 100
+		if (isPlayerOutsideCircle > (player.movement.outerZoneRadius ** 2)){
 			//Player is outside circle
 			player.movement.newPositionX = player.movement.positionX
 			player.movement.newPositionY = player.movement.positionY			
 			document.getElementById("info").style.color = "red"
 			//(player.movement.newPositionX ** 2) + (player.movement.newPositionY ** 2)
-		} else if (isPlayerOutsideCircle > 6400 && (((player.movement.positionX - 500) ** 2) + ((player.movement.positionY - 500) ** 2)) < isPlayerOutsideCircle) { //radius 80 * 80, slow down outside!
+		} else if (isPlayerOutsideCircle > (player.movement.innerZoneRadius ** 2) && (((player.movement.positionX - 500) ** 2) + ((player.movement.positionY - 500) ** 2)) < isPlayerOutsideCircle) { //radius 80 * 80, slow down outside!
 			player.movement.maxSpeed = 0.02
 			document.getElementById("info").style.color = "yellow"
 		} else {
