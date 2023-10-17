@@ -121,8 +121,8 @@ function start(){
 			document.getElementById("game").style.display = "block"
 			document.getElementById("activate-acceleration").innerHTML = "Reset accelerometer"
 			window.addEventListener("deviceorientation", function(e){
-				player.movement.newPositionX = player.movement.positionX + e.gamma * player.movement.maxSpeed
-				player.movement.newPositionY = player.movement.positionY + e.beta * player.movement.maxSpeed
+				player.movement.newPositionX = player.movement.positionX + e.gamma * player.movement.maxSpeed - player.movement.startingPhoneRotationX
+				player.movement.newPositionY = player.movement.positionY + e.beta * player.movement.maxSpeed - player.movement.startingPhoneRotationY
 				if (setDeviceStartingOrientation == 1){
 					return
 				} else {
@@ -221,8 +221,8 @@ function playerMovement(){
 
 	limitMovement()
 
-	player.movement.positionX = player.movement.newPositionX + player.movement.startingPhoneRotationX
-	player.movement.positionY = player.movement.newPositionY + player.movement.startingPhoneRotationY
+	player.movement.positionX = player.movement.newPositionX
+	player.movement.positionY = player.movement.newPositionY
 	
 	document.getElementById("info").innerHTML = `positionX = ${player.movement.positionX} | positionY = ${player.movement.positionY}`
 }
