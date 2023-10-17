@@ -121,8 +121,8 @@ function start(){
 			document.getElementById("game").style.display = "block"
 			document.getElementById("activate-acceleration").innerHTML = "Reset accelerometer"
 			window.addEventListener("deviceorientation", function(e){
-				player.movement.newPositionX = player.movement.positionX + e.gamma * player.movement.maxSpeed
-				player.movement.newPositionY = player.movement.positionY + e.beta * player.movement.maxSpeed
+				player.movement.newPositionX = player.movement.positionX + e.gamma * player.movement.maxSpeed + player.movement.statingPhoneRotationX
+				player.movement.newPositionY = player.movement.positionY + e.beta * player.movement.maxSpeed + player.movement.statingPhoneRotationY
 				if (setDeviceStartingOrientation == 1){
 					return
 				} else {
@@ -278,7 +278,7 @@ function limitMovement(){
 			document.getElementById("info").style.color = "red"
 			//(player.movement.newPositionX ** 2) + (player.movement.newPositionY ** 2)
 		} else if (isPlayerOutsideCircle > (player.movement.innerZoneRadius ** 2) && (((player.movement.positionX - 500) ** 2) + ((player.movement.positionY - 500) ** 2)) < isPlayerOutsideCircle) { //radius 80 * 80, slow down outside!
-			player.movement.maxSpeed = 0.1
+			player.movement.maxSpeed = ((player.movement.outerZoneRadius ** 2) - isPlayerOutsideCircle) * 0.001
 			document.getElementById("info").style.color = "yellow"
 		} else {
 			player.movement.maxSpeed = 0.1
