@@ -131,7 +131,10 @@ function start(){
 	
 	DeviceMotionEvent.requestPermission().then(function(response){
 		if (response == "granted"){
+			document.getElementById("stage").style.display = "block"
+			document.getElementById("background-layer").style.display = "block"
 			document.getElementById("game-layer").style.display = "block"
+			document.getElementById("ui-layer").style.display = "block"
 			document.getElementById("activate-acceleration").innerHTML = "Reset accelerometer"
 			window.addEventListener("deviceorientation", function(e){
 				player.movement.newPositionX = player.movement.positionX + (e.gamma - player.movement.startingPhoneRotationX) * player.movement.maxSpeed 
