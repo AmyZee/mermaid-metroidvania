@@ -242,12 +242,12 @@ function drawMovementZone(){
 	document.getElementById("game-layer").getContext("2d").beginPath()
 	document.getElementById("game-layer").getContext("2d").strokeStyle = "#eee"
 	document.getElementById("game-layer").getContext("2d").lineWidth = 2
-	document.getElementById("game-layer").getContext("2d").arc(500, 500, player.movement.outerZoneRadius, 0, 2 * Math.PI)
+	document.getElementById("game-layer").getContext("2d").arc(player.movement.newPositionX, player.movement.newPositionY, player.movement.outerZoneRadius, 0, 2 * Math.PI)
 	document.getElementById("game-layer").getContext("2d").stroke()
 
 	document.getElementById("game-layer").getContext("2d").beginPath()
 	document.getElementById("game-layer").getContext("2d").strokeStyle = "#ddd"
-	document.getElementById("game-layer").getContext("2d").arc(500, 500, player.movement.outerZoneRadius * 0.9, 1.5 * Math.PI, 0)
+	document.getElementById("game-layer").getContext("2d").arc(player.movement.newPositionX, player.movement.newPositionY, player.movement.outerZoneRadius * 0.9, 1.5 * Math.PI, 0)
 	document.getElementById("game-layer").getContext("2d").stroke()
 	
 	document.getElementById("game-layer").getContext("2d").drawImage(playersprite, player.movement.positionX - 50, player.movement.positionY - 50, 100, 100)
@@ -282,7 +282,7 @@ function limitMovement(){
 			player.movement.newPositionY = player.movement.positionY			
 			document.getElementById("info").style.color = "red"
 			//(player.movement.newPositionX ** 2) + (player.movement.newPositionY ** 2)
-		} else if (isPlayerOutsideCircle > (player.movement.innerZoneRadius ** 2) && (((player.movement.positionX - 500) ** 2) + ((player.movement.positionY - 500) ** 2)) < isPlayerOutsideCircle) { //radius 80 * 80, slow down outside!
+		} else if (isPlayerOutsideCircle > (player.movement.innerZoneRadius ** 2) && (((player.movement.positionX - player.movement.bubblePositionX) ** 2) + ((player.movement.positionY - player.movement.newPositionY) ** 2)) < isPlayerOutsideCircle) { //radius 80 * 80, slow down outside!
 			player.movement.maxSpeed = 0.02
 			document.getElementById("info").style.color = "yellow"
 			moveBubble()
@@ -306,8 +306,7 @@ function limitMovement(){
 
 
 function moveBubble(){
-	console.log("bubblePositionX:" + player.movement.bubblePositionX + "newPositionX: " + player.movement.newPositionX)
-	player.movement.bubblePositionX = player.movement.newPositionX - player.movement.bubblePositionX
+	player.movement.bubblePositionX = player.movement.newPositionX - player.movement.positionX
 	
 }
 
