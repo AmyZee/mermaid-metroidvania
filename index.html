@@ -49,6 +49,7 @@ var player = {}
 	player.movement.positionY = 500
 	player.movement.bubblePositionX = 500 //Center of bubble
 	player.movement.bubblePositionY = 500 //Center of bubble
+		//Bubble should not move with player, player can move outside bubble. Bubble is there as a control to view speed, like a virtual joystick. Bubble might teleport to player later when player recenters accelerometer (or pauses the game/uses a UI action).
 	player.movement.newPositionX = 500
 	player.movement.newPositionY = 500
 	player.movement.startingPhoneRotationX = 0
