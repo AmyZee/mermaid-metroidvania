@@ -194,16 +194,16 @@ function drawMovementZone(){
 	//Display Grid 50 by 50 units, 25 by 25 sub-units
 
 	document.getElementById("game-layer").getContext("2d").strokeStyle = "#aaa"
-	for (i = 25; i < 1000; i+=50){
-		for (j = 25; j < 1600; j+=50){
+	for (i = 25; i < 1000 - player.newPositionX; i+=50){
+		for (j = 25; j < 1600 - player.newPositionY; j+=50){
 			document.getElementById("game-layer").getContext("2d").beginPath()
 			document.getElementById("game-layer").getContext("2d").moveTo(i, 0)
-			document.getElementById("game-layer").getContext("2d").lineTo(i, 1600)
+			document.getElementById("game-layer").getContext("2d").lineTo(i, 1600 - player.newPositionY)
 			document.getElementById("game-layer").getContext("2d").stroke()
 
 			document.getElementById("game-layer").getContext("2d").beginPath()
 			document.getElementById("game-layer").getContext("2d").moveTo(0, j)
-			document.getElementById("game-layer").getContext("2d").lineTo(1000, j)
+			document.getElementById("game-layer").getContext("2d").lineTo(1000 - player.newPositionX, j)
 			document.getElementById("game-layer").getContext("2d").stroke()
 		}
 		
@@ -308,6 +308,12 @@ function limitMovement(){
 
 }
 
+function testBlockCameraMovementAndCollision(){
+	document.getElementById("game-layer").getContext("2d").fillStyle = "green"
+	document.getElementById("game-layer").getContext("2d").rect(1200, 1200, 1600, 1600)
+}
+
+	
 	
 </script>
 </body>
