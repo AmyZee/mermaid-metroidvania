@@ -7,7 +7,16 @@
 	body{
 		margin: 0;
 	}
-	#game{
+	#stage{
+		position: relative;
+		width: 100%;
+		height: 160vw;
+		display: none;
+	}
+	canvas{
+		position: absolute;
+	}
+	#game-layer{
 		width: 100%;
 		height: 160vw;
 		border: 1px solid black;
@@ -22,10 +31,14 @@
 <body>
 <button id="activate-acceleration" onclick="start()" style="height:176px; font-size: 80px;">Activate Acceleration</button>
 <div id="info"></div>
-<canvas width="1000" height="1600" id="game"></canvas>
-
+<div id="stage">
+	<canvas width="1000" height="1600" id="background-layer"></canvas>
+	<canvas width="1000" height="1600" id="game-layer"></canvas>
+	<canvas width="1000" height="1600" id="ui-layer"></canvas>
+</div>
+	
 <script>
-var setDeviceStartingOrientation = 0
+var setDeviceStartingOrientation = 0 //Used for resetting accelerometer position
 var player = {}
 	player.movement = {}
 	player.movement.positionX = 500
