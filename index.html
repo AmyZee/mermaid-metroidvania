@@ -122,7 +122,7 @@ var level = {}
 var playersprite = new Image()
 	playersprite.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Godot_icon.svg/480px-Godot_icon.svg.png"
 
-var context = document.getElementById("game").getContext("2d")
+var context = document.getElementById("game-layer").getContext("2d")
 
 	
 function start(){
@@ -131,7 +131,7 @@ function start(){
 	
 	DeviceMotionEvent.requestPermission().then(function(response){
 		if (response == "granted"){
-			document.getElementById("game").style.display = "block"
+			document.getElementById("game-layer").style.display = "block"
 			document.getElementById("activate-acceleration").innerHTML = "Reset accelerometer"
 			window.addEventListener("deviceorientation", function(e){
 				player.movement.newPositionX = player.movement.positionX + (e.gamma - player.movement.startingPhoneRotationX) * player.movement.maxSpeed 
@@ -147,7 +147,7 @@ function start(){
 		}
 	})
 	
-	document.getElementById("game").getContext("2d").drawImage(playersprite, player.positionX - 50, player.positionY - 50, 100, 100)
+	document.getElementById("game-layer").getContext("2d").drawImage(playersprite, player.positionX - 50, player.positionY - 50, 100, 100)
 	
 	gameLoop()
 
@@ -166,66 +166,66 @@ function gameLoop(){
 
 function drawMovementZone(){
 	
-	document.getElementById("game").getContext("2d").clearRect(0, 0, 1000, 1600)
+	document.getElementById("game-layer").getContext("2d").clearRect(0, 0, 1000, 1600)
 
 
 	//Display Grid 50 by 50 units, 25 by 25 sub-units
 
-	document.getElementById("game").getContext("2d").strokeStyle = "#aaa"
+	document.getElementById("game-layer").getContext("2d").strokeStyle = "#aaa"
 	for (i = 25; i < 1000; i+=50){
 		for (j = 25; j < 1600; j+=50){
-			document.getElementById("game").getContext("2d").beginPath()
-			document.getElementById("game").getContext("2d").moveTo(i, 0)
-			document.getElementById("game").getContext("2d").lineTo(i, 1600)
-			document.getElementById("game").getContext("2d").stroke()
+			document.getElementById("game-layer").getContext("2d").beginPath()
+			document.getElementById("game-layer").getContext("2d").moveTo(i, 0)
+			document.getElementById("game-layer").getContext("2d").lineTo(i, 1600)
+			document.getElementById("game-layer").getContext("2d").stroke()
 
-			document.getElementById("game").getContext("2d").beginPath()
-			document.getElementById("game").getContext("2d").moveTo(0, j)
-			document.getElementById("game").getContext("2d").lineTo(1000, j)
-			document.getElementById("game").getContext("2d").stroke()
+			document.getElementById("game-layer").getContext("2d").beginPath()
+			document.getElementById("game-layer").getContext("2d").moveTo(0, j)
+			document.getElementById("game-layer").getContext("2d").lineTo(1000, j)
+			document.getElementById("game-layer").getContext("2d").stroke()
 		}
 		
 	}
 	
 
 
-	document.getElementById("game").getContext("2d").strokeStyle = "#555"
+	document.getElementById("game-layer").getContext("2d").strokeStyle = "#555"
 	for (i = 50; i < 1000; i+=100){
 		for (j = 50; j < 1600; j+=100){
-			document.getElementById("game").getContext("2d").beginPath()
-			document.getElementById("game").getContext("2d").moveTo(i, 0)
-			document.getElementById("game").getContext("2d").lineTo(i, 1600)
-			document.getElementById("game").getContext("2d").stroke()
+			document.getElementById("game-layer").getContext("2d").beginPath()
+			document.getElementById("game-layer").getContext("2d").moveTo(i, 0)
+			document.getElementById("game-layer").getContext("2d").lineTo(i, 1600)
+			document.getElementById("game-layer").getContext("2d").stroke()
 
-			document.getElementById("game").getContext("2d").beginPath()
-			document.getElementById("game").getContext("2d").moveTo(0, j)
-			document.getElementById("game").getContext("2d").lineTo(1000, j)
-			document.getElementById("game").getContext("2d").stroke()
+			document.getElementById("game-layer").getContext("2d").beginPath()
+			document.getElementById("game-layer").getContext("2d").moveTo(0, j)
+			document.getElementById("game-layer").getContext("2d").lineTo(1000, j)
+			document.getElementById("game-layer").getContext("2d").stroke()
 		}
 		
 	}
 
-	document.getElementById("game").getContext("2d").strokeStyle = "#000"
+	document.getElementById("game-layer").getContext("2d").strokeStyle = "#000"
 	for (i = 100; i < 1000; i+=100){
 		for (j = 100; j < 1600; j+=100){
-			document.getElementById("game").getContext("2d").beginPath()
-			document.getElementById("game").getContext("2d").moveTo(i, 0)
-			document.getElementById("game").getContext("2d").lineTo(i, 1600)
-			document.getElementById("game").getContext("2d").stroke()
+			document.getElementById("game-layer").getContext("2d").beginPath()
+			document.getElementById("game-layer").getContext("2d").moveTo(i, 0)
+			document.getElementById("game-layer").getContext("2d").lineTo(i, 1600)
+			document.getElementById("game-layer").getContext("2d").stroke()
 
-			document.getElementById("game").getContext("2d").beginPath()
-			document.getElementById("game").getContext("2d").moveTo(0, j)
-			document.getElementById("game").getContext("2d").lineTo(1000, j)
-			document.getElementById("game").getContext("2d").stroke()
+			document.getElementById("game-layer").getContext("2d").beginPath()
+			document.getElementById("game-layer").getContext("2d").moveTo(0, j)
+			document.getElementById("game-layer").getContext("2d").lineTo(1000, j)
+			document.getElementById("game-layer").getContext("2d").stroke()
 		}
 		
 	}
 
 	//Draw player
-	document.getElementById("game").getContext("2d").beginPath()
-	document.getElementById("game").getContext("2d").arc(500, 500, player.movement.outerZoneRadius, 0, 2 * Math.PI)
-	document.getElementById("game").getContext("2d").stroke()
-	document.getElementById("game").getContext("2d").drawImage(playersprite, player.movement.positionX - 50, player.movement.positionY - 50, 100, 100)
+	document.getElementById("game-layer").getContext("2d").beginPath()
+	document.getElementById("game-layer").getContext("2d").arc(500, 500, player.movement.outerZoneRadius, 0, 2 * Math.PI)
+	document.getElementById("game-layer").getContext("2d").stroke()
+	document.getElementById("game-layer").getContext("2d").drawImage(playersprite, player.movement.positionX - 50, player.movement.positionY - 50, 100, 100)
 	
 	
 }
