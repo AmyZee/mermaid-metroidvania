@@ -47,6 +47,8 @@ var player = {}
 	player.movement = {}
 	player.movement.positionX = 500
 	player.movement.positionY = 500
+	player.movement.bubblePositionX = 500 //Center of bubble
+	player.movement.bubblePositionY = 500 //Center of bubble
 	player.movement.newPositionX = 500
 	player.movement.newPositionY = 500
 	player.movement.startingPhoneRotationX = 0
@@ -273,7 +275,7 @@ function limitMovement(){
 			//Use that position instead for movement calculation (i.e. teleport to that position every frame)
 			//That way, positioning outside circle is still calculated correctly when changing radius
 
-		var isPlayerOutsideCircle = ((player.movement.newPositionX - 500) ** 2) + ((player.movement.newPositionY - 500) ** 2)
+		var isPlayerOutsideCircle = ((player.movement.newPositionX - player.movement.bubblePositionX) ** 2) + ((player.movement.newPositionY - player.movement.bubblePositionY) ** 2)
 		if (isPlayerOutsideCircle > (player.movement.outerZoneRadius ** 2)){
 			//Player is outside circle
 			player.movement.newPositionX = player.movement.positionX
@@ -283,6 +285,7 @@ function limitMovement(){
 		} else if (isPlayerOutsideCircle > (player.movement.innerZoneRadius ** 2) && (((player.movement.positionX - 500) ** 2) + ((player.movement.positionY - 500) ** 2)) < isPlayerOutsideCircle) { //radius 80 * 80, slow down outside!
 			player.movement.maxSpeed = 0.02
 			document.getElementById("info").style.color = "yellow"
+			moveBubble()
 		} else {
 			player.movement.maxSpeed = 0.1
 			document.getElementById("info").style.color = "black"
@@ -301,6 +304,12 @@ function limitMovement(){
 
 }
 
+
+function moveBubble(){
+
+	player.movement.bubblePositionX = player.movement.bubblePositionX - player.movement.newPositionX
+	
+}
 
 
 	
