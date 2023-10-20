@@ -127,7 +127,7 @@ var playersprite = new Image()
 	playersprite.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Godot_icon.svg/480px-Godot_icon.svg.png"
 
 var background1 = new Image()
-	background1.src = "https://en.wikipedia.org/wiki/Reef#/media/File:Nusa_Lembongan_Reef.jpg"
+	background1.src = "background1.png"
 
 var context = document.getElementById("game-layer").getContext("2d")
 
@@ -165,10 +165,10 @@ function start(){
 }
 
 function changeBackground(){
-	//document.getElementById("background-layer").getContext("2d").drawImage(background1, 0, 0)
-	document.getElementById("background-layer").getContext("2d").fillStyle = "#69faeb"
-	document.getElementById("background-layer").getContext("2d").rect(0,0,1000,1600)
-	document.getElementById("background-layer").getContext("2d").fill()
+	document.getElementById("background-layer").getContext("2d").drawImage(background1, 0, 0)
+	// document.getElementById("background-layer").getContext("2d").fillStyle = "#69faeb"
+	// document.getElementById("background-layer").getContext("2d").rect(0,0,1000,1600)
+	// document.getElementById("background-layer").getContext("2d").fill()
 }
 
 function gameLoop(){
