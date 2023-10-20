@@ -238,13 +238,13 @@ function drawMovementZone(){
 
 	//Draw player
 	document.getElementById("game-layer").getContext("2d").beginPath()
-	document.getElementById("game-layer").getContext("2d").fillStyle = "#eee"
+	document.getElementById("game-layer").getContext("2d").strokeStyle = "#eee"
 	document.getElementById("game-layer").getContext("2d").lineWidth = 2
 	document.getElementById("game-layer").getContext("2d").arc(500, 500, player.movement.outerZoneRadius, 0, 2 * Math.PI)
 	document.getElementById("game-layer").getContext("2d").stroke()
 
 	document.getElementById("game-layer").getContext("2d").beginPath()
-	document.getElementById("game-layer").getContext("2d").fillStyle = "#ddd"
+	document.getElementById("game-layer").getContext("2d").strokeStyle = "#ddd"
 	document.getElementById("game-layer").getContext("2d").arc(500, 500, player.movement.outerZoneRadius * 0.9, 1.5 * Math.PI, 0)
 	document.getElementById("game-layer").getContext("2d").stroke()
 	
