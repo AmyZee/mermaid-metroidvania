@@ -50,6 +50,10 @@ var player = {}
 	player.movement.bubblePositionX = 500 //Center of bubble
 	player.movement.bubblePositionY = 500 //Center of bubble
 		//Bubble should not move with player, player can move outside bubble. Bubble is there as a control to view speed, like a virtual joystick. Bubble might teleport to player later when player recenters accelerometer (or pauses the game/uses a UI action).
+		//Level should scroll around player, even when safely in bubble
+		//When player moves to bubble border, it scrolls fastest without player actually moving 
+		//Bubble could fade away after a few seconds as it's only a support aid
+		//Bubble should basically be used as an ease-in-out effect for camera movement
 	player.movement.newPositionX = 500
 	player.movement.newPositionY = 500
 	player.movement.startingPhoneRotationX = 0
@@ -279,16 +283,15 @@ function limitMovement(){
 		var isPlayerOutsideCircle = ((player.movement.newPositionX - player.movement.bubblePositionX) ** 2) + ((player.movement.newPositionY - player.movement.bubblePositionY) ** 2)
 		if (isPlayerOutsideCircle > (player.movement.outerZoneRadius ** 2)){
 			//Player is outside circle
-			player.movement.maxSpeed = 0.1
 			player.movement.newPositionX = player.movement.positionX
 			player.movement.newPositionY = player.movement.positionY			
 			document.getElementById("info").style.color = "red"
 			//(player.movement.newPositionX ** 2) + (player.movement.newPositionY ** 2)
 		} else if (isPlayerOutsideCircle > (player.movement.innerZoneRadius ** 2) && (((player.movement.positionX - player.movement.bubblePositionX) ** 2) + ((player.movement.positionY - player.movement.newPositionY) ** 2)) < isPlayerOutsideCircle) { //radius 80 * 80, slow down outside!
-			player.movement.maxSpeed = 0.05
+			player.movement.maxSpeed = 0.02
 			document.getElementById("info").style.color = "yellow"
 		} else {
-			player.movement.maxSpeed = 0.02
+			player.movement.maxSpeed = 0.1
 			document.getElementById("info").style.color = "black"
 		}
 	}
