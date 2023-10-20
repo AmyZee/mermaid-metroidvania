@@ -165,7 +165,10 @@ function start(){
 }
 
 function changeBackground(){
-	document.getElementById("background-layer").getContext("2d").drawImage(background1, 0, 0)
+	//document.getElementById("background-layer").getContext("2d").drawImage(background1, 0, 0)
+	document.getElementById("background-layer").getContext("2d").fillStyle = "#69faeb"
+	document.getElementById("background-layer").getContext("2d").rect(0,0,1000,1600)
+	document.getElementById("background-layer").getContext("2d").fill()
 }
 
 function gameLoop(){
