@@ -285,7 +285,6 @@ function limitMovement(){
 		} else if (isPlayerOutsideCircle > (player.movement.innerZoneRadius ** 2) && (((player.movement.positionX - player.movement.bubblePositionX) ** 2) + ((player.movement.positionY - player.movement.newPositionY) ** 2)) < isPlayerOutsideCircle) { //radius 80 * 80, slow down outside!
 			player.movement.maxSpeed = 0.02
 			document.getElementById("info").style.color = "yellow"
-			moveBubble()
 		} else {
 			player.movement.maxSpeed = 0.1
 			document.getElementById("info").style.color = "black"
@@ -303,13 +302,6 @@ function limitMovement(){
 	
 
 }
-
-
-function moveBubble(){
-	player.movement.bubblePositionX = player.movement.newPositionX - player.movement.positionX
-	player.movement.bubblePositionY = player.movement.newPositionY - player.movement.positionY
-}
-
 
 	
 </script>
