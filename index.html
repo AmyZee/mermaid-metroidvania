@@ -46,8 +46,8 @@
 var setDeviceStartingOrientation = 0 //Used for resetting accelerometer position
 var player = {}
 	player.movement = {}
-	player.movement.positionX = 500
-	player.movement.positionY = 500
+	player.movement.positionX = 0
+	player.movement.positionY = 0
 	player.movement.bubblePositionX = 500 //Center of bubble
 	player.movement.bubblePositionY = 500 //Center of bubble
 		//Bubble should not move with player, player can move outside bubble. Bubble is there as a control to view speed, like a virtual joystick. Bubble might teleport to player later when player recenters accelerometer (or pauses the game/uses a UI action).
@@ -55,8 +55,8 @@ var player = {}
 		//When player moves to bubble border, it scrolls fastest without player actually moving 
 		//Bubble could fade away after a few seconds as it's only a support aid
 		//Bubble should basically be used as an ease-in-out effect for camera movement
-	player.movement.newPositionX = 500
-	player.movement.newPositionY = 500
+	player.movement.newPositionX = 0
+	player.movement.newPositionY = 0
 	player.movement.startingPhoneRotationX = 0
 	player.movement.startingPhoneRotationY = 0
 	player.movement.maxSpeed = 0.1
@@ -90,7 +90,8 @@ var playersprite = new Image()
 var background1 = new Image()
 	background1.src = "background1.png"
 
-var context = document.getElementById("game-layer").getContext("2d")
+var gameLayer = document.getElementById("game-layer").getContext("2d")
+gameLayer.setTransform(1, 0, 0, 1, 0, 0)
 
 	
 function start(){
@@ -130,6 +131,8 @@ function changeBackground(){
 }
 
 function gameLoop(){
+	//Reset transform (x,y) to default
+	document.getElementById("game-layer").getContext("2d").setTransform(1, 0, 0, 1, 0, 0)
 
 	drawMovementZone()
 
@@ -141,7 +144,6 @@ function gameLoop(){
 
 
 function drawMovementZone(){
-	
 	document.getElementById("game-layer").getContext("2d").clearRect(0, 0, 1000, 1600)
 
 
@@ -210,12 +212,14 @@ function drawMovementZone(){
 	document.getElementById("game-layer").getContext("2d").stroke()
 
 	//Draw player
+	document.getElementById("game-layer").getContext("2d").setTransform(1, 0, 0, 1, 500, 500)
 	document.getElementById("game-layer").getContext("2d").drawImage(playersprite, player.movement.positionX - 50, player.movement.positionY - 50, 100, 100)
 	
 	
 }
 	
 function playerMovement(){
+
 
 	limitMovement()
 
