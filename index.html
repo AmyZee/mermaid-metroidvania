@@ -39,6 +39,7 @@
 <div id="stage">
 	<canvas width="1000" height="1600" id="background-layer"></canvas>
 	<canvas width="1000" height="1600" id="game-layer"></canvas>
+	<canvas width="1000" height="1600" id="player-layer"></canvas>
 	<canvas width="1000" height="1600" id="ui-layer"></canvas>
 </div>
 	
@@ -212,8 +213,8 @@ function drawMovementZone(){
 	document.getElementById("game-layer").getContext("2d").stroke()
 
 	//Draw player
-	document.getElementById("game-layer").getContext("2d").setTransform(1, 0, 0, 1, 500, 500)
-	document.getElementById("game-layer").getContext("2d").drawImage(playersprite, player.movement.positionX - 50, player.movement.positionY - 50, 100, 100)
+	document.getElementById("player-layer").getContext("2d").setTransform(1, 0, 0, 1, 500, 500)
+	document.getElementById("player-layer").getContext("2d").drawImage(playersprite, player.movement.positionX - 50, player.movement.positionY - 50, 100, 100)
 	
 	
 }
