@@ -215,7 +215,8 @@ function drawMovementZone(){
 	//Draw player
 	document.getElementById("player-layer").getContext("2d").setTransform(1, 0, 0, 1, 500, 500)
 	document.getElementById("player-layer").getContext("2d").drawImage(playersprite, player.movement.positionX - 50, player.movement.positionY - 50, 100, 100)
-	
+	document.getElementById("player-layer").getContext("2d").setTransform(1, 0, 0, 1, 0, 0)
+
 	
 }
 	
