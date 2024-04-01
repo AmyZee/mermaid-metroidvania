@@ -94,6 +94,9 @@ var playersprite = new Image()
 var background1 = new Image()
 	background1.src = "background1.png"
 
+var blocksprite = new Image()
+	blocksprite.src = "block.png"
+
 var gameLayer = document.getElementById("game-layer").getContext("2d")
 gameLayer.setTransform(1, 0, 0, 1, 0, 0)
 
@@ -143,6 +146,8 @@ function gameLoop(){
 
 	playerMovement()
 
+	drawGameObjects()
+
 	drawMovementZone()
 
 
@@ -150,9 +155,17 @@ function gameLoop(){
 	
 }
 
+function drawGameObjects(){
+	// player.movement.positionX
+	// 0, y: -100, width: 200, height: 200
+	document.getElementById("game-layer").getContext("2d").clearRect(0, 0, 1000, 1600)
+
+	document.getElementById("game-layer").getContext("2d").drawImage(blocksprite, 500, 400, 100, 100)
+	document.getElementById("game-layer").getContext("2d").drawImage(blocksprite, 600, 400, 100, 100)
+}
+
 
 function drawMovementZone(){
-	document.getElementById("game-layer").getContext("2d").clearRect(0, 0, 1000, 1600)
 	document.getElementById("player-layer").getContext("2d").clearRect(0, 0, 1000, 1600)
 
 
@@ -276,6 +289,8 @@ function limitMovement(){
 			player.movement.newPositionX = player.movement.positionX
 			player.movement.newPositionY = player.movement.positionY
 			document.getElementById("info").style.color = "red"
+		} else {
+			document.getElementById("info").style.color = "black"
 		}
 
 	}
