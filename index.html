@@ -270,6 +270,13 @@ function limitMovement(){
 	
 	function limitToLevelObjects(){
 		
+		//Example object: rectangle
+		//x: 0, y: 200, width: 200, height: 100
+		if(player.movement.newPositionX > 0 && player.movement.newPositionY > 200 && player.movement.newPositionX < 300 && player.movement.newPositionY < 100){
+			player.movement.newPositionX = player.movement.positionX
+			player.movement.newPositionY = player.movement.positionY
+			document.getElementById("info").style.color = "red"
+		}
 
 	}
 	limitToLevelObjects()
