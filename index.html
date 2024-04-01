@@ -25,8 +25,11 @@
 	#game-layer{
 		z-index: 2;
 	}
-	#ui-layer{
+	#player-layer{
 		z-index: 3;
+	}
+	#ui-layer{
+		z-index: 4;
 	}
 	#info{
 		width: 100%;
@@ -120,7 +123,7 @@ function start(){
 		}
 	})
 	
-	document.getElementById("game-layer").getContext("2d").drawImage(playersprite, player.positionX - 50, player.positionY - 50, 100, 100)
+	// document.getElementById("player-layer").getContext("2d").drawImage(playersprite, player.movement.positionX - 50, player.movement.positionY - 50, 100, 100)
 
 	changeBackground()
 	gameLoop()
