@@ -104,6 +104,7 @@ function start(){
 	
 	DeviceMotionEvent.requestPermission().then(function(response){
 		if (response == "granted"){
+			alert("hi!")
 			document.getElementById("stage").style.display = "block"
 			document.getElementById("background-layer").style.display = "block"
 			document.getElementById("game-layer").style.display = "block"
